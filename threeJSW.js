@@ -56,17 +56,17 @@ function csvToArr(stringVal, splitter) {
   return formedArr;
 }
 
-const form = document.querySelector("#csvForm");
-const csvFileInput = document.querySelector("#csvInput");
+ 
+ 
 
 let csvArray = [];
 const vertices = [];
 
 
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
-  const file = csvFileInput.files[0];
-  const reader = new FileReader();
+document.querySelector("#displayInput").addEventListener('click', function () {
+  let file = document.getElementById('csvFile').files[0];
+  let reader = new FileReader();
+  reader.readAsText(file);
 
   reader.onload = function (e) {
     csvArray = csvToArr(e.target.result, ";");
@@ -77,7 +77,6 @@ form.addEventListener("submit", function (e) {
 
        
       let x = csvArray[i]['X'];
-       
       //console.log(csvArray[i]['X']);
       let y = csvArray[i]['Y']; 
       //console.log(csvArray[i]['Y']);
@@ -132,7 +131,7 @@ form.addEventListener("submit", function (e) {
      
   }
 
-  reader.readAsText(file);
+  
 }) 
 
 
