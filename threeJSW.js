@@ -4,7 +4,10 @@ import * as THREE from 'three';
 import { OrbitControls } from 'OrbitControls';
 
 const canvas = document.querySelector('#c');
-const renderer = new THREE.WebGLRenderer({canvas});
+const renderer = new THREE.WebGLRenderer({
+  canvas,
+  alpha: true,
+});
 renderer.setSize(canvas.clientWidth, canvas.clientHeight);
 document.body.appendChild(renderer.domElement); 
 
@@ -25,23 +28,20 @@ camera.lookAt({
 
 const controls = new OrbitControls( camera, renderer.domElement ); 
 
+//CAMERA
+
+
+
+//SCENE
+
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x282c34);
 
-//LIGHT
 
-/* {
-  const color = 0xFFFFFF;
-  const intensity = 1;
-  const light = new THREE.DirectionalLight(color, intensity);
-  light.position.set(-1, 2, 4);
-  scene.add(light);
-} */
 
 //INPUT
 
 //CSVTOARR
-
 function csvToArr(stringVal, splitter) {
   const [keys, ...rest] = stringVal.toString()
     .trim()
@@ -56,9 +56,6 @@ function csvToArr(stringVal, splitter) {
   return formedArr;
 }
 
- 
- 
-
 let csvArray = [];
 const vertices = [];
 
@@ -71,8 +68,7 @@ document.querySelector("#displayInput").addEventListener('click', function () {
   reader.onload = function (e) {
     csvArray = csvToArr(e.target.result, ";");
     console.log(csvArray);
-
-     
+ 
     for (let i = 0; i < csvArray.length-1; i++){
 
        
@@ -125,6 +121,19 @@ document.querySelector("#displayInput").addEventListener('click', function () {
     function render() {
       renderer.render(scene, camera)
     }
+
+    // var switchCamera = function() {
+    // if (camera instanceof THREE.OrthographicCamera) {
+    //   camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    //   camera.position.set(0, 0, 100);
+    // } else {
+    //   camera = new THREE.OrthographicCamera(- window.innerWidth / 2, window.innerWidth / 2, window.innerHeight / 2, - window.innerHeight / 2, 0.1, 1000);
+    //   camera.position.set(0, 0, 100);
+    // }
+    //   controls.update();
+    // }
+
+
 
       
     animate()
