@@ -56,92 +56,108 @@ function csvToArr(stringVal, splitter) {
   return formedArr;
 }
 
-let csvArray = [];
+
 const vertices = [];
 
 
-document.querySelector("#displayInput").addEventListener('click', function () {
-  let file = document.getElementById('csvFile').files[0];
-  let reader = new FileReader();
-  reader.readAsText(file);
+let csvArray;
+const fileInput = document.getElementById("fileInput");
 
-  reader.onload = function (e) {
-    csvArray = csvToArr(e.target.result, ";");
-    console.log(csvArray);
  
-    for (let i = 0; i < csvArray.length-1; i++){
+fileInput.addEventListener("change", function() {
+  const file = this.files[0];
+  readTextFile(file).then(function(data) {
+    csvArray = data;
+  });
+});
+
+function readTextFile(file) {
+  return new Promise(function(resolve, reject) {
+    const reader = new FileReader();
+  
+    reader.onload = function(event) {
+      resolve(event.target.result);
+    };
+  
+    reader.readAsText(file);
+  });
+}
+
+const displayInput = document.getElementById("displayInput");
+displayInput.addEventListener("click", function (){
+  csvArray = csvToArr(csvArray, ";");
+  console.log(csvArray);
+
+  for (let i = 0; i < csvArray.length-1; i++){
 
        
-      let x = csvArray[i]['X'];
-      //console.log(csvArray[i]['X']);
-      let y = csvArray[i]['Y']; 
-      //console.log(csvArray[i]['Y']);
-      let z = csvArray[i]['Z']; 
-      //console.log(csvArray[i]['Z']);
-      vertices.push( x, y, z);
-    } 
+    let x = csvArray[i]['X'];
+    //console.log(csvArray[i]['X']);
+    let y = csvArray[i]['Y']; 
+    //console.log(csvArray[i]['Y']);
+    let z = csvArray[i]['Z']; 
+    //console.log(csvArray[i]['Z']);
+    vertices.push( x, y, z);
+  } 
 
-    //GEOMETRY
-    const geometry = new THREE.BufferGeometry();
-    geometry.setAttribute( 'position', new THREE.Float32BufferAttribute( vertices, 3) );
-     
-     
+  //GEOMETRY
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute( 'position', new THREE.Float32BufferAttribute( vertices, 3) );
+       
+       
+  
+  //MATERIAL
+  const material = new THREE.PointsMaterial({
+    color: 'red',
+    sizeAttenuation: false,
+    //size: 3,      
+    size: 2,    
+  }); 
 
-    //MATERIAL
-    const material = new THREE.PointsMaterial({
-      color: 'red',
-      sizeAttenuation: false,
-      //size: 3,      
-      size: 2,    
-    }); 
+  const points = new THREE.Points( geometry, material );
+  scene.add( points );
 
-    const points = new THREE.Points( geometry, material );
-    scene.add( points );
-
-    //RESIZE
-    window.addEventListener('resize', onWindowResize, false)
-    function onWindowResize() {
-      camera.aspect = window.innerWidth / window.innerHeight
-      camera.updateProjectionMatrix()
-      renderer.setSize(window.innerWidth, window.innerHeight)
-      render()
-    }
-
-    //ANIMATE
-    function animate() {
-      requestAnimationFrame(animate)
-
-      controls.update()
-
-      render()
-    }
-
-    //RENDERER
-
-    function render() {
-      renderer.render(scene, camera)
-    }
-
-    // var switchCamera = function() {
-    // if (camera instanceof THREE.OrthographicCamera) {
-    //   camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    //   camera.position.set(0, 0, 100);
-    // } else {
-    //   camera = new THREE.OrthographicCamera(- window.innerWidth / 2, window.innerWidth / 2, window.innerHeight / 2, - window.innerHeight / 2, 0.1, 1000);
-    //   camera.position.set(0, 0, 100);
-    // }
-    //   controls.update();
-    // }
-
-
-
-      
-    animate()
-     
+  //RESIZE
+  window.addEventListener('resize', onWindowResize, false)
+  function onWindowResize() {
+    camera.aspect = window.innerWidth / window.innerHeight
+    camera.updateProjectionMatrix()
+    renderer.setSize(window.innerWidth, window.innerHeight)
+    render()
   }
 
-  
-}) 
+  //ANIMATE
+  function animate() {
+    requestAnimationFrame(animate)
+
+    controls.update()
+
+    render()
+  }
+
+  //RENDERER
+
+  function render() {
+    renderer.render(scene, camera)
+  }
+
+  animate()
+
+});
+
+//     // var switchCamera = function() {
+//     // if (camera instanceof THREE.OrthographicCamera) {
+//     //   camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+//     //   camera.position.set(0, 0, 100);
+//     // } else {
+//     //   camera = new THREE.OrthographicCamera(- window.innerWidth / 2, window.innerWidth / 2, window.innerHeight / 2, - window.innerHeight / 2, 0.1, 1000);
+//     //   camera.position.set(0, 0, 100);
+//     // }
+//     //   controls.update();
+//     // }
+
+
+
 
 
  
