@@ -12,11 +12,11 @@ renderer.setSize(canvas.clientWidth, canvas.clientHeight);
 document.body.appendChild(renderer.domElement); 
 
 const fov = 45;
-const aspect = 2;//canvas.clientWidth / canvas.clientHeight;
+const aspect = 2;
 const near = 0.1;
 const far = 1000;
-//const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-const camera = new THREE.OrthographicCamera( window.innerWidth / - 2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / - 2, 10, 1000 );
+let camera = new THREE.OrthographicCamera( window.innerWidth / - 2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / - 2, 10, 1000 );
+let cameraPosX = 0;
 camera.position.set(0, 200, 200);
 camera.lookAt({
   x:0,
@@ -26,7 +26,7 @@ camera.lookAt({
 
 //CONTROLS
 
-const controls = new OrbitControls( camera, renderer.domElement ); 
+let controls = new OrbitControls( camera, renderer.domElement ); 
 
 //CAMERA
 
@@ -36,8 +36,6 @@ const controls = new OrbitControls( camera, renderer.domElement );
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x282c34);
-
-
 
 //INPUT
 
@@ -55,9 +53,6 @@ function csvToArr(stringVal, splitter) {
   });
   return formedArr;
 }
-
-
-
 
 
 let csvArray;
@@ -107,7 +102,6 @@ displayInput.addEventListener("click", function (){
   geometry.setAttribute( 'position', new THREE.Float32BufferAttribute( vertices, 3) );
        
        
-  
   //MATERIAL
   const material = new THREE.PointsMaterial({
     color: 'red',
@@ -150,26 +144,39 @@ displayInput.addEventListener("click", function (){
 const switchCamera = document.getElementById("switchCamera");
 switchCamera.addEventListener("click", function(){
   if (camera instanceof THREE.OrthographicCamera) {
-    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.set(0, 0, 100);
+    camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+    camera.position.set(0, 200, 200);
+    camera.lookAt({
+      x:0,
+      y:0,
+      z:0
+    });
+    controls = new OrbitControls( camera, renderer.domElement ); 
   } else {
-    camera = new THREE.OrthographicCamera(- window.innerWidth / 2, window.innerWidth / 2, window.innerHeight / 2, - window.innerHeight / 2, 0.1, 1000);
-    camera.position.set(0, 0, 100);
+    camera = new THREE.OrthographicCamera(window.innerWidth / - 2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / - 2, near, far );
+    camera.position.set(0, 200, 200);
+    camera.lookAt({
+      x:0,
+      y:0,
+      z:0
+    });
+    
+    controls = new OrbitControls( camera, renderer.domElement ); 
   }
     controls.update();
 
 });
 
- 
-
 
 //CLEAR
 const clearButton = document.getElementById("clearButton");
-clearButton.addEventListener("click", function(){
+clearButton.addEventListener("click", clear);
+
+function clear(){
   scene.remove.apply(scene, scene.children);
   vertices.length = 0;
   console.log(vertices);
-});
+}
 
 
 
