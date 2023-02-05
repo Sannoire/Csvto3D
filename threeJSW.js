@@ -57,7 +57,7 @@ function csvToArr(stringVal, splitter) {
 }
 
 
-const vertices = [];
+
 
 
 let csvArray;
@@ -82,6 +82,8 @@ function readTextFile(file) {
     reader.readAsText(file);
   });
 }
+
+let vertices = [];
 
 const displayInput = document.getElementById("displayInput");
 displayInput.addEventListener("click", function (){
@@ -145,18 +147,29 @@ displayInput.addEventListener("click", function (){
 
 });
 
-//     // var switchCamera = function() {
-//     // if (camera instanceof THREE.OrthographicCamera) {
-//     //   camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-//     //   camera.position.set(0, 0, 100);
-//     // } else {
-//     //   camera = new THREE.OrthographicCamera(- window.innerWidth / 2, window.innerWidth / 2, window.innerHeight / 2, - window.innerHeight / 2, 0.1, 1000);
-//     //   camera.position.set(0, 0, 100);
-//     // }
-//     //   controls.update();
-//     // }
+const switchCamera = document.getElementById("switchCamera");
+switchCamera.addEventListener("click", function(){
+  if (camera instanceof THREE.OrthographicCamera) {
+    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.set(0, 0, 100);
+  } else {
+    camera = new THREE.OrthographicCamera(- window.innerWidth / 2, window.innerWidth / 2, window.innerHeight / 2, - window.innerHeight / 2, 0.1, 1000);
+    camera.position.set(0, 0, 100);
+  }
+    controls.update();
+
+});
+
+ 
 
 
+//CLEAR
+const clearButton = document.getElementById("clearButton");
+clearButton.addEventListener("click", function(){
+  scene.remove.apply(scene, scene.children);
+  vertices.length = 0;
+  console.log(vertices);
+});
 
 
 
