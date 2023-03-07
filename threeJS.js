@@ -21,6 +21,8 @@ const camera = perspectiveCamera;
 
 //CONTROLS
 
+let a = 0;
+
 const controls = new OrbitControls(  camera, renderer.domElement ); 
 
 const scene = new THREE.Scene();
