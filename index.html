@@ -19,11 +19,18 @@
 
         <div class="head">
 
-             
-            <input type="file" id="fileInput" accept=".csv" value="Загрузить файл"/>
+            <label for="fileInput" id="fileLabel">
+                Load CSV
+            </label>
+            <input type="file" id="fileInput" accept=".csv"/>
+            <label for="JSONInput" id="JSONLabel">
+                Load JSON
+            </label>
+            <input type="file" id="JSONInput" accept=".JSON"/>
             <button id="displayInput">Отобразить</button>  
             <button id="switchCamera">Изменить камеру</button>
             <button id="clearButton">Очистить</button>
+            <button id="split">Сплит</button>
             
         </div>
     </header>

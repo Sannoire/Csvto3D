@@ -40,7 +40,15 @@ button:hover {
 	cursor: pointer;
 }
 
-input[type="file"] {
+#fileInput{
+	display: none;
+}
+
+#JSONInput{
+	display: none;
+}
+
+#fileLabel{
 	height: 60px;
 	width: 60px;
 	margin-top: 20px;
@@ -52,10 +60,45 @@ input[type="file"] {
 	padding: 10px 20px;
 	font-size: 18px;
 	transition: all 0.3s;
-
+	cursor: pointer; 
 }
+
+#JSONLabel{
+	height: 60px;
+	width: 60px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	background-color: black;
+	color: white;
+	border: 2px solid red;
+	border-radius: 10px;
+	padding: 10px 20px;
+	font-size: 18px;
+	transition: all 0.3s;
+	cursor: pointer; 
+}
+
+/* #fileInput::after{
+	content: "";
+	position: absolute;
+	top: 0;
+	left:0;
+	width: 100%;
+	height: 100%;
+
+	background: #000;
+
+} */
+
+
 	
-input[type="file"]:hover {
+#fileInput:hover{
+	background-color: red;
+	color: black;
+	cursor: pointer;
+}
+
+#JSONInput:hover{
 	background-color: red;
 	color: black;
 	cursor: pointer;
@@ -73,6 +116,28 @@ input[type="file"]:hover {
 header {
 	border-bottom: 2px solid red;
 }
+
+.menu {
+	background-color: black;
+	color: white;
+	border: 2px solid red;
+	border-radius: 10px;
+	padding: 10px 20px;
+	font-size: 18px;
+	transition: all 0.5s;
+	position: absolute;
+	top: 50%;
+	left: 7%;
+	transform: translate(-50%, -50%);
+	margin: auto;
+}
+
+.menu li:hover {
+	background-color: red;
+	color: black;
+	cursor: pointer;
+  }
+  
 
 
 

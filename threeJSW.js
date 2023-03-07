@@ -24,21 +24,14 @@ camera.lookAt({
   z:0
 });
 
-//CONTROLS
-
+//Контролс
 let controls = new OrbitControls( camera, renderer.domElement ); 
 
-//CAMERA
-
-
-
-//SCENE
-
+//Сцена
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x282c34);
 
-//INPUT
-
+//Ввод
 //CSVTOARR
 function csvToArr(stringVal, splitter) {
   const [keys, ...rest] = stringVal.toString()
@@ -54,55 +47,91 @@ function csvToArr(stringVal, splitter) {
   return formedArr;
 }
 
-
-let csvArray;
+let csvArray = 0;
+let JSONArray = 0;
 const fileInput = document.getElementById("fileInput");
-
+const JSONInput = document.getElementById("JSONInput");
  
 fileInput.addEventListener("change", function() {
   const file = this.files[0];
   readTextFile(file).then(function(data) {
     csvArray = data;
+    createMenu(csvToArr(event.target.result, ";"));
   });
+});
+
+JSONInput.addEventListener("change", function(){
+  const file = this.files[0];
+  readTextFile(file).then(function(data) {
+    JSONArray = JSON.parse(data);
+    console.log(JSONArray);
+    console.log(JSONArray.X.length);
+  })
 });
 
 function readTextFile(file) {
   return new Promise(function(resolve, reject) {
     const reader = new FileReader();
   
-    reader.onload = function(event) {
+    reader.onloadend = function(event) {
       resolve(event.target.result);
     };
-  
     reader.readAsText(file);
   });
 }
 
+//Отобразить всё
 let vertices = [];
 
 const displayInput = document.getElementById("displayInput");
 displayInput.addEventListener("click", function (){
-  csvArray = csvToArr(csvArray, ";");
-  console.log(csvArray);
+  let displayArray;
+  // if (csvArray == 0){
+  //   displayArray = JSONArray;
+  // } else
+  displayArray = csvToArr(csvArray,";");
+  display(displayArray, 0);
 
-  for (let i = 0; i < csvArray.length-1; i++){
+});
 
-       
-    let x = csvArray[i]['X'];
-    //console.log(csvArray[i]['X']);
-    let y = csvArray[i]['Y']; 
-    //console.log(csvArray[i]['Y']);
-    let z = csvArray[i]['Z']; 
-    //console.log(csvArray[i]['Z']);
-    vertices.push( x, y, z);
+//Отобразить
+function display(displayArray, Number){
+  //CSV
+  for (let i = 0; i < displayArray.length-1; i++){
+    if (Number == 0){
+      let x = displayArray[i]['X'];
+      let y = displayArray[i]['Y']; 
+      let z = displayArray[i]['Z']; 
+      vertices.push( x, y, z);
+    } else
+    if (displayArray[i]['Number'] == Number){
+      let x = displayArray[i]['X'];
+      let y = displayArray[i]['Y']; 
+      let z = displayArray[i]['Z']; 
+      vertices.push( x, y, z);
+    } 
   } 
+  //JSON
+  // for (let i = 0; i <= displayArray.X.length-1; i++){
+  //   if (Number == 0){
+  //     let x = displayArray.X[i];
+  //     let y = displayArray.Y[i];
+  //     let z = displayArray.Z[i]; 
+  //     vertices.push( x, y, z);
+  //   } else
+  //   if (displayArray[i]['Number'] == Number){
+  //     let x = displayArray[i]['X'];
+  //     let y = displayArray[i]['Y']; 
+  //     let z = displayArray[i]['Z']; 
+  //     vertices.push( x, y, z);
+  //   } 
+  // } 
 
-  //GEOMETRY
+  //Геометрия
   const geometry = new THREE.BufferGeometry();
   geometry.setAttribute( 'position', new THREE.Float32BufferAttribute( vertices, 3) );
-       
-       
-  //MATERIAL
+        
+  //Материал
   const material = new THREE.PointsMaterial({
     color: 'red',
     sizeAttenuation: false,
@@ -113,7 +142,7 @@ displayInput.addEventListener("click", function (){
   const points = new THREE.Points( geometry, material );
   scene.add( points );
 
-  //RESIZE
+  //Размер окна
   window.addEventListener('resize', onWindowResize, false)
   function onWindowResize() {
     camera.aspect = window.innerWidth / window.innerHeight
@@ -122,24 +151,19 @@ displayInput.addEventListener("click", function (){
     render()
   }
 
-  //ANIMATE
+  //Анимация
   function animate() {
     requestAnimationFrame(animate)
-
     controls.update()
-
     render()
   }
 
-  //RENDERER
-
+  //Рендер
   function render() {
     renderer.render(scene, camera)
   }
-
   animate()
-
-});
+}
 
 const switchCamera = document.getElementById("switchCamera");
 switchCamera.addEventListener("click", function(){
@@ -160,23 +184,74 @@ switchCamera.addEventListener("click", function(){
       y:0,
       z:0
     });
-    
     controls = new OrbitControls( camera, renderer.domElement ); 
   }
-    controls.update();
+  controls.update();
+});
+
+const split = document.getElementById("split");
+split.addEventListener("click", function(){
 
 });
 
 
-//CLEAR
+//Очистка
 const clearButton = document.getElementById("clearButton");
 clearButton.addEventListener("click", clear);
-
 function clear(){
   scene.remove.apply(scene, scene.children);
   vertices.length = 0;
   console.log(vertices);
 }
+
+const MapType = new Map([['1', "Цилиндр"], ['2', "Сфера"], ['3', "Поверхность"]]);
+
+//Создание меню
+function createMenu(displayArray) {
+  var menu = document.createElement("div");
+  menu.id = "menu";
+  menu.className = "menu";
+  var ul = document.createElement("ul");
+
+  // Находим максимальное значение Number
+  var maxNumber = 0;
+  for (var i = 0; i < displayArray.length; i++) {
+    if (displayArray[i]['Number'] > maxNumber) {
+      maxNumber = displayArray[i]['Number'];
+    }
+  }
+
+  // Создаем пункты меню и добавляем их в список
+  for (var i = 1; i <= maxNumber ; i++) {
+    var li = document.createElement("li");
+    for (var j = 1; j < displayArray.length; j++){
+      if (displayArray[j]['Number'] == i) {
+        var k = MapType.get(displayArray[j]['Type']);
+        li.textContent = MapType.get(displayArray[j]['Type']) + displayArray[j]['ID']; 
+        console.log(k);
+        j = 1; 
+        break;
+      }
+    }
+  
+    ul.appendChild(li);
+  }
+
+  menu.appendChild(ul);
+  document.body.appendChild(menu);
+
+  // получаем список всех пунктов меню
+  const menuItems = document.querySelectorAll('.menu li');
+
+  // добавляем обработчик клика на каждый пункт меню
+  menuItems.forEach((item, index) => {
+    item.addEventListener('click', function() { 
+      display(displayArray,index+1)
+    });
+  });
+}
+
+
 
 
 
