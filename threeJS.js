@@ -21,7 +21,7 @@ const camera = perspectiveCamera;
 
 //CONTROLS
 
-let a = 0;
+let a = 1;
 
 const controls = new OrbitControls(  camera, renderer.domElement ); 
 
