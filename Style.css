@@ -4,8 +4,6 @@
 }
 
 html, body {
-    margin: 0;
-    padding: 0;
     width: 100%;
     height: 100%;
 }
@@ -27,7 +25,7 @@ input {
 	margin-bottom: 20px;
 }
 
-button{
+/* button{
 	background-color: black;
 	color: white;
 	border: 2px solid red;
@@ -35,13 +33,56 @@ button{
 	padding: 10px 20px;
 	font-size: 18px;
 	transition: all 0.3s;
+} */
+
+.button_split{
+	width: 100px;
+	height: 50px;
+
 }
 
-button:hover {
+.btnsplit{
+	overflow: visible;
+
+
+}
+
+.btnsplit_rect{
+	width: 100px;
+	height: 50px;
+	stroke: #FFF;
+	stroke-width: 4;
+	stroke-dasharray: 75;
+	stroke-dashoffset: 45;
+	stroke-linejoin: round;
+	stroke-linecap: round;
+	fill: transparent;
+	transition: 0.3s ease-in-out;
+	
+}
+
+.btnsplit_circle{
+	fill:white
+}
+
+.btnsplit .btnsplit_rect:hover{
+	stroke-dashoffset: 200;
+	
+}
+
+ 
+
+
+/* button:hover {
 	background-color: red;
 	color: black;
 	cursor: pointer;
-}
+} */
+
+
+ 
+
+
 
 #fileInput{
 	display: none;

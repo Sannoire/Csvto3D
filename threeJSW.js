@@ -49,6 +49,7 @@ function csvToArr(stringVal, splitter) {
 
 let csvArray = 0;
 let JSONArray = 0;
+let countFigures = 0;
 const fileInput = document.getElementById("fileInput");
 const JSONInput = document.getElementById("JSONInput");
  
@@ -65,7 +66,10 @@ JSONInput.addEventListener("change", function(){
   readTextFile(file).then(function(data) {
     JSONArray = JSON.parse(data);
     console.log(JSONArray);
-    console.log(JSONArray.X.length);
+    countFigures = Object.keys(JSONArray).filter(key => /^Figure \d+$/.test(key)).length;
+
+    console.log(countFigures);
+ 
   })
 });
 
@@ -86,13 +90,15 @@ let vertices = [];
 const displayInput = document.getElementById("displayInput");
 displayInput.addEventListener("click", function (){
   let displayArray;
-  // if (csvArray == 0){
-  //   displayArray = JSONArray;
-  // } else
+  if (csvArray == 0){
+    displayArray = JSONArray;
+  } else
   displayArray = csvToArr(csvArray,";");
   display(displayArray, 0);
 
 });
+
+
 
 //Отобразить
 function display(displayArray, Number){
@@ -112,6 +118,48 @@ function display(displayArray, Number){
     } 
   } 
   //JSON
+  for (let j = 1; j <= countFigures; j++) {
+    let figure = "Figure " + j;
+    console.log(figure);
+    for (let i = 0; i <= displayArray[figure]['X'].length - 1; i++) {
+      let x = displayArray[figure]['X'][i];
+      console.log(displayArray[figure]['X'][i]);
+      let y = displayArray[figure]['Y'][i];
+      console.log(displayArray[figure]['Y'][i]);
+      let z = displayArray[figure]['Z'][i];
+      console.log(displayArray[figure]['Z'][i]);
+      vertices.push(x, y, z);
+    }
+  }
+
+  // for (let j = 1; j <= countFigures; j++){
+  //   let figure = "Figure " + j;
+  //   console.log(figure);
+  //   for (let i = 0; i <= displayArray[figure][['X']].length-1; i++){
+  //     let x = displayArray['Figure 1'].X[i];
+  //     console.log(displayArray['Figure 1'].X[i]);
+  //     let y = displayArray['Figure 1'].Y[i];
+  //     console.log(displayArray['Figure 1'].Y[i]);
+  //     let z = displayArray['Figure 1'].Z[i];
+  //     console.log(displayArray['Figure 1'].Z[i]);
+  //     vertices.push( x, y, z);
+  //   }
+  // }
+
+    // if (Number == 0){
+    //   let x = displayArray['Figure 1'][['X'][i]];
+    //   let y = displayArray['Figure 1'][['Y'][i]];
+    //   let z = displayArray['Figure 1'][['Z'][i]];
+    //   vertices.push( x, y, z);
+    // } else
+    // if (displayArray[i]['Number'] == Number){
+    //   let x = displayArray[i]['X'];
+    //   let y = displayArray[i]['Y']; 
+    //   let z = displayArray[i]['Z']; 
+    //   vertices.push( x, y, z);
+    // } 
+  
+
   // for (let i = 0; i <= displayArray.X.length-1; i++){
   //   if (Number == 0){
   //     let x = displayArray.X[i];
@@ -126,6 +174,7 @@ function display(displayArray, Number){
   //     vertices.push( x, y, z);
   //   } 
   // } 
+
 
   //Геометрия
   const geometry = new THREE.BufferGeometry();
@@ -189,11 +238,9 @@ switchCamera.addEventListener("click", function(){
   controls.update();
 });
 
-const split = document.getElementById("split");
-split.addEventListener("click", function(){
-
-});
-
+// const split = document.getElementById("split");
+// split.addEventListener("click", function(){
+// });
 
 //Очистка
 const clearButton = document.getElementById("clearButton");
