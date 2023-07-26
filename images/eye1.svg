@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.4.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+<style type="text/css">
+	.st0{display:none;}
+	.st1{display:inline;fill:url(#SVGID_1_);}
+	.st2{fill:#050603;}
+	.st3{fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st4{fill:#FFFFFF;}
+</style>
+<g class="st0">
+	
+		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="0.6758" y1="25" x2="41.3144" y2="25" gradientTransform="matrix(1 0 0 -1 0 50)">
+		<stop  offset="0.2803" style="stop-color:#89B3F1"/>
+		<stop  offset="0.4097" style="stop-color:#A0A8E3;stop-opacity:0.8202"/>
+		<stop  offset="0.8117" style="stop-color:#E488BC;stop-opacity:0.2616"/>
+		<stop  offset="1" style="stop-color:#FF7BAC;stop-opacity:0"/>
+	</linearGradient>
+	<circle class="st1" cx="25" cy="25" r="14.5"/>
+</g>
+<g>
+	<path class="st2" d="M25,16c6,0,11.4,3.5,13.8,8.9c-5.2,6.5-13,6.6-13.8,6.6c-7.6,0-12.5-5-13.8-6.7C13.6,19.5,19,16,25,16 M25,15
+		c-6.5,0-12.5,4-15,10c0.6,0.7,5.8,7.5,15,7.5c0.9,0,9.5-0.2,15-7.5C37.5,19,31.5,15,25,15L25,15z"/>
+</g>
+<g>
+	<path class="st3" d="M21.3,27.2"/>
+	<circle cx="24.6" cy="22.9" r="4.6"/>
+	<circle class="st4" cx="25.9" cy="23.7" r="0.8"/>
+</g>
+</svg>
