@@ -15,40 +15,182 @@
     </script>
 </head>
 <body>
-    <header>
-
-        <div class="head">
-
-            <label for="fileInput" id="fileLabel">
-                Load CSV
-            </label>
-            <input type="file" id="fileInput" accept=".csv"/>
-            <label for="JSONInput" id="JSONLabel">
-                Load JSON
-            </label>
-            <input type="file" id="JSONInput" accept=".JSON"/>
-            <button id="displayInput">Отобразить</button>  
-            <button id="switchCamera">Изменить камеру</button>
-            <button id="clearButton">Очистить</button>
-            
-            <div class="button_split">
-                <svg class="btnsplit" height="50px" width="100px">
-                    <circle class="btnsplit_circle" cx="50" cy="25" r="5"></circle>
-                    <rect class="btnsplit_rect" x="0" y="0" rx="10"/>
-                    
-
-
-                </svg>
-            </div>
-
-
-
-            
+    <div class="axisButtons">
+        <div class="group">
+            <a href="#" id="axisBtnX" class="axisButton btn btn-animated" style="color: red;">YZ</a>
+            <a href="#" id="axisBtnY" class="axisButton btn btn-animated" style="color: green;">XZ</a>
+            <a href="#" id="axisBtnZ" class="axisButton btn btn-animated" style="color: blue;">XY</a>
         </div>
-    </header>
+    </div>
+    <header>
+        <label for="fileInput" id="fileLabel">
+            <svg class="button_csvLoad" height="50px" width="50px" x="0px" y="0px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;">
+                <style type="text/css">
+                    .st6{fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+                    .st7{stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+                    .st8{fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:10;}
+                    .st9{fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+                    .st10{font-family:'MicrosoftNewTaiLue-Bold';}
+                    .st11{font-size:8px;}
+                    .st12{letter-spacing:1;}
+                </style>
+                <g>
+                    <line class="st6" x1="25" y1="31.8" x2="25" y2="18"/>
+                    <polygon class="st7" points="28.8,25.4 21.2,25.4 25,32 	"/>
+                </g>
+                <line class="st8" x1="23.2" y1="22" x2="14.8" y2="22"/>
+                <line class="st8" x1="35.2" y1="22" x2="26.8" y2="22"/>
+                <line class="st9" x1="36" y1="22" x2="36" y2="34"/>
+                <line class="st9" x1="14" y1="22" x2="14" y2="34"/>
+                <line class="st9" x1="14" y1="34" x2="36" y2="34"/>
+                <text transform="matrix(1 0 0 1 16.1099 16.1758)" class="st10 st11 st12">CSV</text>
+            </svg>
+        </label>
+        <input type="file" class="fileInput" id="fileInput" accept=".csv"/>
+        <label for="JSONInput" id="JSONLabel">
+            <svg class="button_csvLoad" height="50px" width="50px" x="0px" y="0px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;">
+                <style type="text/css">
+                    .st6{fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+                    .st7{stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+                    .st8{fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:10;}
+                    .st9{fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+                    .st10{font-family:'MicrosoftNewTaiLue-Bold';}
+                    .st11{font-size:8px;}
+                    .st12{letter-spacing:1;}
+                </style>
+                <g>
+                    <line class="st6" x1="25" y1="31.8" x2="25" y2="18"/>
+                    <polygon class="st7" points="28.8,25.4 21.2,25.4 25,32 	"/>
+                </g>
+                <line class="st8" x1="23.2" y1="22" x2="14.8" y2="22"/>
+                <line class="st8" x1="35.2" y1="22" x2="26.8" y2="22"/>
+                <line class="st9" x1="36" y1="22" x2="36" y2="34"/>
+                <line class="st9" x1="14" y1="22" x2="14" y2="34"/>
+                <line class="st9" x1="14" y1="34" x2="36" y2="34"/>
+                <text transform="matrix(1 0 0 1 16.1099 16.1758)" class="st10 st11 st12">JSON</text>
+            </svg>
+        </label>
+        <input type="file" class="fileInput" id="JSONInput" accept=".JSON"/>
+        <div id="displayInput">
+            <svg class="button_displayInput" height="50px" width="50px" x="0px" y="0px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;">
 
+                <style type="text/css">
+                    .st0{display:none;}
+                    .st1{display:inline;fill:url(#SVGID_1_);}
+                    .st2{fill:#050603;}
+                    .st3{fill:none;stroke:#000000;stroke-miterlimit:10;}
+                </style>
+                <g class="st0">
+                    <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="0.6758" y1="25" x2="41.3144" y2="25" gradientTransform="matrix(1 0 0 -1 0 50)">
+                    <stop  offset="0.2803" style="stop-color:#89B3F1"/>
+                    <stop  offset="0.4097" style="stop-color:#A0A8E3;stop-opacity:0.8202"/>
+                    <stop  offset="0.8117" style="stop-color:#E488BC;stop-opacity:0.2616"/>
+                    <stop  offset="1" style="stop-color:#FF7BAC;stop-opacity:0"/>
+                </linearGradient>
+                <circle class="st1" cx="25" cy="25" r="14.5"/>
+            </g>
+            <g>
+                <path class="st2" d="M25,16c6,0,11.4,3.5,13.8,8.9c-5.2,6.5-13,6.6-13.8,6.6c-7.6,0-12.5-5-13.8-6.7C13.6,19.5,19,16,25,16 M25,15
+                    c-6.5,0-12.5,4-15,10c0.6,0.7,5.8,7.5,15,7.5c0.9,0,9.5-0.2,15-7.5C37.5,19,31.5,15,25,15L25,15z"/>
+            </g>
+            <g>
+                <path class="st3" d="M21.3,27.2"/>
+                <circle cx="24.6" cy="22.9" r="4.6"/>
+                <circle cx="25.9" cy="23.7" r="0.8" fill="white"/>
+            </g>
+            </svg>
+        </div>
+        <div id="switchCamera">
+            <svg class="button_switchCamera" height="50px" width="50px" x="0px" y="0px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;">
+                <style type="text/css">
+                    .st0{fill:none;stroke:#000000;stroke-linejoin:round;stroke-miterlimit:10;}
+                    .st1{fill:none;stroke:#000000;stroke-miterlimit:10;}
+                </style>
+                <g>
+                    <path class="st1" d="M36,37H14c-2.2,0-4-1.8-4-4V20c0-2.2,1.8-4,4-4h22c2.2,0,4,1.8,4,4v13C40,35.2,38.2,37,36,37z"/>
+                    <path class="st1" d="M31.5,16c-4.3,0-8.7,0-13,0c0.7-2.4,1.2-3,1.6-3c0,0,0.1,0,0.8,0c0.3,0,0.6,0,0.8,0c2.2,0,4.3,0,6.5,0c0.2,0,0.5,0,0.8,0
+                        c0.7,0,0.8,0,0.8,0C30.3,13,30.8,13.6,31.5,16z"/>
+                    <circle class="st1" cx="25" cy="26" r="6.2"/>
+                    <circle cx="14.5" cy="19.5" r="1.5" fill="black"/>
+                </g>
+            </svg>
+
+        </div>
+        <div id="clearButton">
+            <svg class="button_clear" width="50px" height="50px" x="0px" y="0px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+                <style type="text/css">
+                    .st3{fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-miterlimit:10;}
+                </style>
+                <g>
+                    <g>
+                        <path class="st3" d="M17.5,39.5c5,0,10,0,15,0"/>
+                    </g>
+                    <g>
+                        <line class="st3" x1="12.5" y1="17" x2="37.5" y2="17"/>
+                    </g>
+                    <line class="st3" x1="32.5" y1="39.5" x2="35.5" y2="17.5"/>
+                    <line class="st3" x1="17.5" y1="39.5" x2="14.5" y2="17.5"/>
+                    <line class="st3" x1="29" y1="39.5" x2="30" y2="17"/>
+                    <line class="st3" x1="21" y1="39" x2="20" y2="17"/>
+                    <line class="st3" x1="25" y1="39" x2="25" y2="17"/>
+                    <g>
+                        <line class="st3" x1="15.2" y1="14" x2="34.8" y2="14"/>
+                    </g>
+                    <path d="M28.4,14.4c-2.2,0-4.5,0-6.7,0c-0.2-1.1,0.3-2.2,1.4-2.9c1.2-0.7,2.8-0.7,4,0C28.1,12.2,28.6,13.3,28.4,14.4z"/>
+                </g>
+            </svg>
+
+        </div>
+        <!-- <button id="splitButton">Сплит</button> -->
+        <!-- <div id="splitButton">
+            <svg class="button_split" width="50px" height="50px" x="0px" y="0px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+                <style type="text/css">
+                    .st4{fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+                    .st5{stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+                </style>
+                <g>
+                    <g>
+                        <line class="st4" x1="27" y1="16" x2="27" y2="34"/>
+                    </g>
+                    <g>
+                        <line class="st4" x1="23" y1="16" x2="23" y2="34"/>
+                    </g>
+                    <g>
+                        <line class="st4" x1="36.5" y1="25" x2="27.5" y2="25"/>
+                        <polygon class="st5" points="30.2,21.2 30.2,28.8 36.8,25 		"/>
+                    </g>
+                    <g>
+                        <line class="st4" x1="13.8" y1="24.9" x2="22.8" y2="25"/>
+                        <polygon class="st5" points="20.1,28.8 20.2,21.2 13.5,24.9 		"/>
+                    </g>
+                </g>
+            </svg>
+        </div> -->
+        <div id="sendDiv">
+            <button id="sendButton" class="sendButton">Отпр</button>
+        </div> 
+
+    </header>
+    <div id="console" >
+        <div id="toggleButton">
+            <svg width="50px" height="50px" viewBox="0 0 25 25" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+                <defs>
+                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" style="stop-color: pink;" />
+                      <stop offset="100%" style="stop-color: lightblue;" />
+                    </linearGradient>
+                  </defs>
+                <path class="toggleButtonPath" fill="url(#gradient) fill-rule="evenodd" d="M15.293 8.707a1 1 0 101.414-1.414l-6-6a1 1 0 00-1.414 0l-6 6a1 1 0 001.414 1.414L10 3.414l5.293 5.293zM4.707 11.293a1 1 0 00-1.414 1.414l6 6a1 1 0 001.414 0l6-6a1 1 0 00-1.414-1.414L10 16.586l-5.293-5.293z"/>
+            </svg>
+        </div>
+        <textarea id="responseTextArea" rows="5" cols="40" readonly></textarea>
+        <form id="myForm">
+          <input type="text" id="myInput">
+        </form>
+    </div>
+    <div id="menu" class="menu"></div>
     <canvas id="c"></canvas>
-    <script type="module" src="threeJSW.js"></script>
+    <script type="module" src="Script.js"></script>
 	
 </body>
 </html>
